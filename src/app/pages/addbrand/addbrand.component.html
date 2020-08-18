@@ -1,0 +1,31 @@
+<nb-tabset fullWidth>
+    <nb-tab tabTitle="Add Brand">
+        <div class="row">
+            <div class="col-md-12">
+                <nb-card class="inline-form-card">
+                    <nb-card-body>
+                        <form [formGroup]="brandForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <div class="full-name-inputs">
+                                    <input type="text" nbInput fullWidth placeholder="Enter brand name" formControlName="name">
+                                </div>
+                            </div>
+                            <button nbButton outline status="primary" fullWidth>Add</button>
+                        </form>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+        </div>
+    </nb-tab>
+    <nb-tab tabTitle="List Brands">
+        <p>List of <strong>Brands</strong>.</p>
+        <nb-card size="small">
+            <nb-list>
+                <nb-list-item *ngFor="let brand of brands" (click)="delete(brand)">
+                    <nb-user [name]="brand.name" [title]="brand._id">
+                    </nb-user>
+                </nb-list-item>
+            </nb-list>
+        </nb-card>
+    </nb-tab>
+</nb-tabset>

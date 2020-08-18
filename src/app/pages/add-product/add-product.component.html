@@ -1,0 +1,137 @@
+<nb-tabset fullWidth>
+    <nb-tab tabTitle="Add Products">
+        <nb-card>
+            <nb-card-body>
+                <form [formGroup]="productForm" (ngSubmit)="onSubmitProduct()">
+                    <div class="form-group">
+                        <input type="text" nbInput fullWidth placeholder="Product Name" formControlName="name">
+                    </div>
+                    <div class="form-group">
+                        <!-- <input type="text" nbInput fullWidth placeholder="Product Description" formControlName="description"> -->
+                        <input type="text" nbInput fullWidth placeholder="Product Tag Line" formControlName="tagline">
+                    </div>
+                    <div class="form-group">
+                        <div class="full-name-inputs">
+                            <input type="text" nbInput fullWidth placeholder="Product Type" formControlName="type">
+                            <nb-select placeholder="Select Gender" fullWidth formControlName="gender">
+                                <nb-option value="{{gen.name}}" *ngFor='let gen of gender'>
+                                    {{gen.name}}
+                                </nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="full-name-inputs">
+                            <input type="text" nbInput fullWidth placeholder="Product Caption" formControlName="caption">
+                            <nb-select placeholder="Brand" fullWidth formControlName="brand">
+                                <nb-option value="{{brand.name}}" *ngFor='let brand of brands'>
+                                    {{brand.name}}
+                                </nb-option>
+                            </nb-select>
+                            <!-- <input type="text" nbInput fullWidth placeholder="Brand" formControlName="brand"> -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="full-name-inputs">
+                            <nb-select placeholder="Category" fullWidth formControlName="category">
+                                <nb-option value="{{cat.name}}" (click)="category(cat.name)" *ngFor='let cat of categories'>
+                                    {{cat.name}}
+                                </nb-option>
+                            </nb-select>
+                            <nb-select placeholder="Sub Category" fullWidth formControlName="subcategory">
+                                <nb-option value="{{cat.name}}" *ngFor='let cat of subcategory'>
+                                    {{cat.name}}
+                                </nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" maxlength="2000" nbInput fullWidth placeholder="Product Description" formControlName="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <nb-card class="inline-form-card">
+                            <nb-card-header>Price</nb-card-header>
+                            <nb-card-body>
+                                <!-- <div class="full-name-inputs">
+                                    <input type="text" nbInput fullWidth placeholder="MRP" formControlName="mrp">
+                                    <input type="text" nbInput fullWidth placeholder="Discount %"
+                                        formControlName="disountpercent">
+                                    <input type="text" nbInput fullWidth placeholder="Selling Price"
+                                        formControlName="price">
+    
+                                </div> -->
+                                <div class="form-row" formGroupName="pricing">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <div class="control-group">
+                                                <!-- Password -->
+                                                <label for="password">MRP: <span class="lblError">*</span></label>
+                                                <div class="controls">
+                                                    <input type="text" nbInput fullWidth placeholder="MRP" class="form-control" formControlName="mrp">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <div class="control-group">
+                                                <!-- Password -->
+                                                <label for="password">Discount %: <span
+                                                        class="lblError">*</span></label>
+                                                <div class="controls">
+                                                    <input type="text" nbInput fullWidth placeholder="Discount %" class="form-control" formControlName="disountpercent">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <div class="control-group">
+                                                <!-- Password -->
+                                                <label for="password">Selling: <span class="lblError">*</span></label>
+                                                <div class="controls">
+                                                    <input type="text" nbInput fullWidth placeholder="Selling Price" class="form-control" formControlName="price">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </nb-card-body>
+                        </nb-card>
+                    </div>
+                    <div class="form-group">
+                        <div class="full-name-inputs">
+                            <nb-select placeholder="Size" fullWidth formControlName="size">
+                                <nb-option value="{{size.name}}" *ngFor='let size of sizes'>
+                                    {{size.name}}
+                                </nb-option>
+                            </nb-select>
+                            <input type="number" nbInput fullWidth placeholder="Stock" formControlName="stock">
+                            <input type="number" nbInput fullWidth placeholder="Sold" formControlName="sold">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="full-name-inputs">
+                            <input type="text" nbInput fullWidth placeholder="Material Type" formControlName="mattype">
+                            <input type="text" nbInput fullWidth placeholder="Color" formControlName="color">
+                            <input type="text" nbInput fullWidth placeholder="Hexa Color Code" formControlName="hexacode">
+                        </div>
+                    </div>
+                    <button nbButton outline status="primary" fullWidth>Add Product</button>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </nb-tab>
+    <nb-tab tabTitle="List Products">
+
+        <nb-card size="small">
+            <nb-list>
+                <nb-list-item *ngFor="let pro of products" (click)="delete(pro)">
+                    <nb-user [name]="pro.name" [title]="pro.description">
+                    </nb-user>
+                </nb-list-item>
+            </nb-list>
+        </nb-card>
+    </nb-tab>
+</nb-tabset>

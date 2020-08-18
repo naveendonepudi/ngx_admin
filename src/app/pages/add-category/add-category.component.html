@@ -1,0 +1,36 @@
+<nb-tabset fullWidth>
+    <nb-tab tabTitle="Add Caterories">
+        <div class="row">
+            <div class="col-md-12">
+                <nb-card class="inline-form-card">
+                    <!-- <nb-card-header>Category</nb-card-header> -->
+                    <nb-card-body>
+                        <!-- <form class="form-inline" #categoryform="ngForm" (click)=reset()>
+                            <input type="text" nbInput fullWidth placeholder="Enter category name" [(ngModel)]="categoryname" [ngModelOptions]="{standalone: true}">
+                            <button type="submit" (click)="create();categoryform.reset()" nbButton status="primary">Add</button>
+                        </form> -->
+                        <form [formGroup]="categoryForm" (ngSubmit)="create()">
+                            <div class="form-group">
+                                <div class="full-name-inputs">
+                                    <input type="text" nbInput fullWidth placeholder="Enter category name" formControlName="name">
+                                </div>
+                            </div>
+                            <button nbButton outline status="primary" fullWidth>Add</button>
+                        </form>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+        </div>
+    </nb-tab>
+    <nb-tab tabTitle="List Caterories">
+        <!-- <p>List of <strong>Caterories</strong>.</p> -->
+        <nb-card size="small">
+            <nb-list>
+                <nb-list-item *ngFor="let cat of categories" (click)="delete(cat)">
+                    <nb-user [name]="cat.name" [title]="cat._id">
+                    </nb-user>
+                </nb-list-item>
+            </nb-list>
+        </nb-card>
+    </nb-tab>
+</nb-tabset>
